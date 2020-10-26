@@ -1,9 +1,5 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt-get install jq -y
-sudo apt-get install tree -y
-
 git config --global push.default matching
 git config --global pull.ff only
 git config --global user.email "hailong@rancher.com"
