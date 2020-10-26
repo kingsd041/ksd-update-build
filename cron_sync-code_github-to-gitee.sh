@@ -96,7 +96,7 @@ sync_repo_github_gitee_rancher()
                         cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
                         mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
                         git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
-                        git commit -am "Update README and Gitee templates"
+                        git commit -am "Add README.zh-CN.md and issue template"
                     fi
                     git push -f https://${GITEE_ACC}:${GITEE_PW}@${GITEE_REPO_URL}/${REPO}.git ${branch}
                 done
@@ -131,7 +131,7 @@ sync_repo_github_gitee_rancher()
                     cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
                     mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
                     git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
-                    git commit -am "Update README and Gitee templates"
+                    git commit -am "Add README.zh-CN.md and issue template"
                 fi
                 git push -f https://${GITEE_ACC}:${GITEE_PW}@${GITEE_REPO_URL}/${REPO}.git ${branch}
             done
