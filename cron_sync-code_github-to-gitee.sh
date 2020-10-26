@@ -1,12 +1,17 @@
 #!/bin/bash
 
-apt-get install jq -y
+sudo apt-get update
+sudo apt-get install jq -y
+sudo apt-get install tree -y
 
 git config --global push.default matching
 git config --global pull.ff only
+git config --global user.email "hailong@rancher.com"
+git config --global user.name "hailong"
 git config --local user.email "hailong@rancher.com"
 git config --local user.name "hailong"
 
+script_base_dir=$(cd "$(dirname "$0")"; pwd)
 cn_file_dir=cron_sync-code_github-to-gitee-file
 
 ROOT_DIR="${PWD}/git-code-sync/"
@@ -15,8 +20,8 @@ cd ${ROOT_DIR}
 
 export REPO_LIST="rancher"
 
-export GITHUB_REPO_URL=github.com/kingsd041
-export GITEE_REPO_URL=gitee.com/kingsd-test
+export GITHUB_REPO_URL=github.com/rancher
+export GITEE_REPO_URL=gitee.com/rancher
 
 export GITEE_ACC=${GITEE_ACC}
 export GITEE_PW=${GITEE_PW}
@@ -88,8 +93,8 @@ sync_repo_github_gitee_rancher()
                     git fetch
                     git pull
                     if [[  ${REPO} == "rancher" && ${branch} == "master" ]]; then
-                        cp ../../${cn_file_dir}/README.zh-CN.md .
-                        mkdir -p .gitee && cp ../../${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
+                        cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
+                        mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
                         git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
                         git commit -am "Update README and Gitee templates"
                     fi
@@ -120,9 +125,11 @@ sync_repo_github_gitee_rancher()
                 git checkout ${branch}
                 git fetch
                 git pull
+
+                # 如果repo是rancher并且branch是master，替换readme和issue模板
                 if [[  ${REPO} == "rancher" && ${branch} == "master" ]]; then
-                    cp ../../${cn_file_dir}/README.zh-CN.md .
-                    mkdir -p .gitee && cp ../../${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
+                    cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
+                    mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
                     git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
                     git commit -am "Update README and Gitee templates"
                 fi

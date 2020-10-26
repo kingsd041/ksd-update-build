@@ -4,6 +4,8 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/rancher/rancher.svg)](https://store.docker.com/community/images/rancher/rancher)
 [![Go Report Card](https://goreportcard.com/badge/github.com/rancher/rancher)](https://goreportcard.com/report/github.com/rancher/rancher)
 
+[English](./README.md) | 简体中文
+
 Rancher是一个开源项目，它提供了一个为在生产中部署容器的组织构建的容器管理平台。Rancher让Kubernetes的运行无处不在，满足IT需求，并增强DevOps团队的能力。
 
 > 您要找Rancher 1.6.x信息吗？[点击这里](https://github.com/rancher/rancher/blob/master/README_1_6.md)

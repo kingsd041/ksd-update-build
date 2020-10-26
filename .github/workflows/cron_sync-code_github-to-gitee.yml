@@ -1,0 +1,27 @@
+name: cron_sync-code_github-to-gitee
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '0 */1 * * *'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run script
+        env:
+          CI_TOKEN: ${{ secrets.CI_TOKEN }}
+          GITEE_ACC: ${{ secrets.GITEE_ACC }}
+          GITEE_PW: ${{ secrets.GITEE_PW }}
+          TZ: 'Asia/Shanghai'
+        run: |
+          bash cron_sync-code_github-to-gitee.sh
