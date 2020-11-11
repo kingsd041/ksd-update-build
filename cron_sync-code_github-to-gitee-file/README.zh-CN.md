@@ -12,13 +12,13 @@ Rancher是一个开源项目，它提供了一个为在生产中部署容器的�
 
 ## 最新发布
 
-### v2.4.9
+**v2.4.9**
 
 * Latest - v2.4.9 - `rancher/rancher:latest` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.4.9)。
 
 * Stable - v2.4.9 - `rancher/rancher:stable` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.4.9)。
 
-### v2.5.2
+**v2.5.2**
 
 * Latest - v2.5.2 - `rancher/rancher:latest` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.5.2)。
 
