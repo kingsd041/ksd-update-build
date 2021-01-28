@@ -12,9 +12,9 @@ Rancher是一个开源项目，它提供了一个为在生产中部署容器的�
 
 ## 最新发布
 
-* Latest - v2.5.2 - `rancher/rancher:latest` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.5.2)。
+* Latest - v2.5.5 - `rancher/rancher:latest` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.5.5)。
 
-* Stable - v2.5.2 - `rancher/rancher:stable` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.5.2)。
+* Stable - v2.5.5 - `rancher/rancher:stable` - 阅读完整的[发行说明](https://github.com/rancher/rancher/releases/tag/v2.5.5)。
 
 要获得我们最新版本的自动通知，您可以在我们的[论坛](http://forums.rancher.com/c/announcements)中查看公告类别，或订阅RSS提要`https://forums.rancher.com/c/announcements.rss`。
 
