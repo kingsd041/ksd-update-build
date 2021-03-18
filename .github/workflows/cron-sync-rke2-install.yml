@@ -1,0 +1,26 @@
+name: cron-sync-rke2-install
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '0 */24 * * *'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run script
+        env:
+          GITH_ACC: ${{ secrets.GITH_ACC }}
+          GITH_PW: ${{ secrets.GITH_PW }}
+          TZ: 'Asia/Shanghai'
+        run: |
+          bash cron-sync-rke2-install.sh
