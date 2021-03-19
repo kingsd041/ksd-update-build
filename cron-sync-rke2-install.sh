@@ -34,5 +34,5 @@ echo "merge upstream/master"
 git merge upstream/master --no-edit
 
 echo "提交更新"
-git push https://${GITHUB_ACC}:${GITHUB_PW}@github.com/${ORG}/${REPO}.git
+git push https://${GITHUB_ACC}:${GITHUB_PW}@github.com/${ORG}/${REPO}.git -f
 
