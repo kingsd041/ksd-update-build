@@ -8,7 +8,7 @@ git config --global user.email "nicholas_ksd@hotmail.com"
 git config --global user.name "hailong"
 
 GITHUB_ACC=${GITH_ACC}
-GITHUB_PW=${GITH_PW}
+GITHUB_PW=${GITH_TOKEN}
 
 REPO=rke2
 ORG=kingsd041
