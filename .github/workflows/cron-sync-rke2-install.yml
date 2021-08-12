@@ -20,7 +20,7 @@ jobs:
       - name: Run script
         env:
           GITH_ACC: ${{ secrets.GITH_ACC }}
-          GITH_PW: ${{ secrets.GITH_PW }}
+          GITH_PW: ${{ secrets.GITH_TOKEN }}
           TZ: 'Asia/Shanghai'
         run: |
           bash cron-sync-rke2-install.sh
