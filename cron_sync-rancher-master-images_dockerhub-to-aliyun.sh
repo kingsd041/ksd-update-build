@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt-get install jq make -y
+sudo apt-get install jq make -y
 touch rancher-version-list.txt
 touch rancher-images-done.txt
 touch rancher-images-all.txt
