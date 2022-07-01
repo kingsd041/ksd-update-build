@@ -48,7 +48,7 @@ make
 
 for i in `cat bin/rancher-images.txt`;
 do
-  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep $i`
+  result=`cat ../rancher-images-v${RANCHER_VERSION}.txt | grep $i`
   if [[ "$result" == "" ]]
   then
     echo $i >> heavy-image.txt
@@ -107,7 +107,6 @@ export images=$( cat rancher-images-all.txt | grep -vE 'Found|Not' )
 export global_namespace=rancher   # rancher
 export NS='
 rancher
-cnrancher
 '
 
 docker_push() {

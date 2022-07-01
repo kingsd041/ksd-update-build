@@ -4,6 +4,7 @@ sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
 cat /etc/resolv.conf
 
 sudo apt-get install jq make -y
+ls -al
 touch rancher-version-list.txt
 touch rancher-images-done.txt
 touch rancher-images-all.txt
@@ -37,7 +38,7 @@ curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER_VERSIO
 
 # make rancher
 git clone https://github.com/rancher/rancher
-git checkout -b  local/v2.5 remotes/origin/release/v2.5
+git checkout -b local/v2.5 remotes/origin/release/v2.5
 cd rancher 
 for k in validate test chart; do
     sed -i "/$k/d" scripts/ci
@@ -48,7 +49,7 @@ make
 
 for i in `cat bin/rancher-images.txt`;
 do
-  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep $i`
+  result=`cat ../rancher-images-v${RANCHER_VERSION}.txt | grep $i`
   if [[ "$result" == "" ]]
   then
     echo $i >> heavy-image.txt
@@ -107,7 +108,6 @@ export images=$( cat rancher-images-all.txt | grep -vE 'Found|Not' )
 export global_namespace=rancher   # rancher
 export NS='
 rancher
-cnrancher
 '
 
 docker_push() {
