@@ -18,7 +18,7 @@ docker login ${registry} -u${ALIYUN_ACC} -p${ALIYUN_PW}
 
 # 下载 rancher 2.5 的 rancher-image.txt
 export RANCHER_VERSION=`curl -L -s https://api.github.com/repos/rancher/rancher/git/refs/tags | jq -r .[].ref | awk -F/ '{print $3}' | grep v | awk -Fv '{print $2}' | grep -v [a-z] | awk -F"." '{arr[$1"."$2]=$3}END{for(var in arr){if(arr[var]==""){print var}else{print var"."arr[var]}}}' | sort -u -t "." -k1nr,1 -k2nr,2 -k3nr,3 | grep -v ^0. | grep -v ^1. | grep -E '^2.5'`
-curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER}/rancher-images.txt -o rancher-images-v${RANCHER}.txt
+curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER_VERSION}/rancher-images.txt -o rancher-images-v${RANCHER_VERSION}.txt
 
 #export RANCHER_VERSION=$( curl -L -s https://api.github.com/repos/rancher/rancher/git/refs/tags | jq -r .[].ref | awk -F/ '{print $3}' | grep v | awk -Fv '{print $2}' | grep -v [a-z] | awk -F"." '{arr[$1"."$2]=$3}END{for(var in arr){if(arr[var]==""){print var}else{print var"."arr[var]}}}' | sort -u -t "." -k1nr,1 -k2nr,2 -k3nr,3 | grep -v ^0. | grep -v ^1. )
 #export RANCHER_VERSION=$( curl -L -s https://api.github.com/repos/rancher/rancher/git/refs/tags | jq -r .[].ref | awk -F/ '{print $3}' | grep v | awk -Fv '{print $2}' | grep -v [a-z] | sort -u -t "." -k1nr,1 -k2nr,2 -k3nr,3 | grep -v ^0. | grep -v ^1. )
@@ -48,7 +48,7 @@ make
 
 for i in `cat bin/rancher-images.txt`;
 do
-  result=`cat rancher-images-v${RANCHER}.txt | grep $i`
+  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep $i`
   if [[ "$result" == "" ]]
   then
     echo $i >> heavy-image.txt
