@@ -16,7 +16,7 @@ export registry=registry.cn-hangzhou.aliyuncs.com
 docker login ${registry} -u${ALIYUN_ACC} -p${ALIYUN_PW}
 #DOWNLOAD_RANCHER_VERSION=2.5
 
-# 下载 rancher 2.6 的 rancher-image.txt
+# 下载 rancher 2.5 的 rancher-image.txt
 export RANCHER_VERSION=`curl -L -s https://api.github.com/repos/rancher/rancher/git/refs/tags | jq -r .[].ref | awk -F/ '{print $3}' | grep v | awk -Fv '{print $2}' | grep -v [a-z] | awk -F"." '{arr[$1"."$2]=$3}END{for(var in arr){if(arr[var]==""){print var}else{print var"."arr[var]}}}' | sort -u -t "." -k1nr,1 -k2nr,2 -k3nr,3 | grep -v ^0. | grep -v ^1. | grep -E '^2.5'`
 curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER}/rancher-images.txt -o rancher-images-v${RANCHER}.txt
 
@@ -37,7 +37,7 @@ curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER}/ranch
 
 # make rancher
 git clone https://github.com/rancher/rancher
-git checkout -b  local/v2.6 remotes/origin/release/v2.6
+git checkout -b  local/v2.5 remotes/origin/release/v2.5
 cd rancher 
 for k in validate test chart; do
     sed -i "/$k/d" scripts/ci
