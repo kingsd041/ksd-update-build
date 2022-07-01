@@ -29,6 +29,7 @@ docker login ${registry} -u${ALIYUN_ACC} -p${ALIYUN_PW}
 
 # make rancher
 git clone https://github.com/rancher/rancher
+git checkout -b  local/v2.6 remotes/origin/release/v2.6
 cd rancher 
 for k in validate test chart; do
     sed -i "/$k/d" scripts/ci
