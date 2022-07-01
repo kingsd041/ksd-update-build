@@ -37,8 +37,8 @@ curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER_VERSIO
 
 # make rancher
 git clone https://github.com/rancher/rancher
-git checkout -b  local/v2.6 remotes/origin/release/v2.6
 cd rancher 
+git checkout -b  local/v2.6 remotes/origin/release/v2.6
 for k in validate test chart; do
     sed -i "/$k/d" scripts/ci
 done
@@ -56,8 +56,11 @@ do
 done
 
 # rancher 镜像
+echo "###### heavy-image.txt begin ######"
 cat heavy-image.txt
+echo "###### heavy-image.txt end   ######"
 cat heavy-image.txt >> rancher-images-all.txt
+rm -f heavy-image.txt
 
 # # cnrancher 镜像
 # for CNRANCHER in $( echo "${CNRANCHER_VERSION}" );
