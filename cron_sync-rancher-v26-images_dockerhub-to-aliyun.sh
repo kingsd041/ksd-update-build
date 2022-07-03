@@ -44,11 +44,29 @@ for k in validate test chart; do
 done
 make
 
-## 镜像去重
+cd ..
 
-for i in `cat bin/rancher-images.txt`;
+echo "###### 查看 scripts/ci -- 开始"
+
+cat rancher/scripts/ci
+
+echo "###### 查看 scripts/ci -- 结束"
+
+
+
+echo "###### 查看 镜像文件 -- 开始 #####"
+cat rancher/bin/rancher-images.txt
+
+echo "--------"
+
+cat rancher-images-v${RANCHER_VERSION}.txt
+
+echo "###### 查看 镜像文件 -- 结束 #####"
+
+## 镜像去重
+for i in `cat rancher/bin/rancher-images.txt`;
 do
-  result=`cat ../rancher-images-v${RANCHER_VERSION}.txt | grep $i`
+  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep $i`
   if [[ "$result" == "" ]]
   then
     echo $i >> heavy-image.txt
