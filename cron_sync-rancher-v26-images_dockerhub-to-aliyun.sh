@@ -66,7 +66,7 @@ echo "###### 查看 镜像文件 -- 结束 #####"
 ## 镜像去重
 for i in `cat rancher/bin/rancher-images.txt`;
 do
-  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep $i`
+  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep -w $i`
   if [[ "$result" == "" ]]
   then
     echo $i >> heavy-image.txt
