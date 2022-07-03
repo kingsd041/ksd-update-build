@@ -4,7 +4,6 @@ sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
 cat /etc/resolv.conf
 
 sudo apt-get install jq make -y
-ls -al
 touch rancher-version-list.txt
 touch rancher-images-done.txt
 touch rancher-images-all.txt
@@ -17,7 +16,7 @@ export registry=registry.cn-hangzhou.aliyuncs.com
 docker login ${registry} -u${ALIYUN_ACC} -p${ALIYUN_PW}
 #DOWNLOAD_RANCHER_VERSION=2.5
 
-# 下载 rancher 2.5 的 rancher-image.txt
+# 下载 rancher 2.5  的 rancher-image.txt
 export RANCHER_VERSION=`curl -L -s https://api.github.com/repos/rancher/rancher/git/refs/tags | jq -r .[].ref | awk -F/ '{print $3}' | grep v | awk -Fv '{print $2}' | grep -v [a-z] | awk -F"." '{arr[$1"."$2]=$3}END{for(var in arr){if(arr[var]==""){print var}else{print var"."arr[var]}}}' | sort -u -t "." -k1nr,1 -k2nr,2 -k3nr,3 | grep -v ^0. | grep -v ^1. | grep -E '^2.5'`
 curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER_VERSION}/rancher-images.txt -o rancher-images-v${RANCHER_VERSION}.txt
 
@@ -36,35 +35,21 @@ curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER_VERSIO
 #echo "$RANCHER_VERSION" | grep ^2.8 | head -n 3 >> rancher-version-list.txt
 #echo "$RANCHER_VERSION" | grep ^2.9 | head -n 3 >> rancher-version-list.txt
 
-echo "###### 查看本地文件1 -- 开始 #######"
-ls -la
-echo "###### 查看本地文件1 -- 结束 #######"
-
 # make rancher
 git clone https://github.com/rancher/rancher
 cd rancher 
-git checkout -b local/v2.5 remotes/origin/release/v2.5
+git checkout -b  local/v2.5 remotes/origin/release/v2.5
 for k in validate test chart; do
     sed -i "/$k/d" scripts/ci
 done
 make
 
-
-echo "###### 查看本地文件2 -- 开始 #######"
-ls -la
-echo "###### 查看本地文件2 -- 结束 #######"
+cd ..
 
 ## 镜像去重
-
-echo "###### 查看镜像文件--开始 #######"
-cat bin/rancher-images.txt
-echo "-------------"
-cat ../rancher-images-v${RANCHER_VERSION}.txt
-echo "###### 查看镜像文件--结束 #######"
-
-for i in `cat bin/rancher-images.txt`;
+for i in `cat rancher/bin/rancher-images.txt`;
 do
-  result=`cat ../rancher-images-v${RANCHER_VERSION}.txt | grep $i`
+  result=`cat rancher-images-v${RANCHER_VERSION}.txt | grep -w $i`
   if [[ "$result" == "" ]]
   then
     echo $i >> heavy-image.txt
@@ -72,17 +57,8 @@ do
 done
 
 # rancher 镜像
-echo "###### heavy-image.txt begin ######"
-cat heavy-image.txt
-echo "###### heavy-image.txt end   ######"
 cat heavy-image.txt >> rancher-images-all.txt
 rm -f heavy-image.txt
-
-echo "#### 查看 rancher-images-all.txt -- 开始"
-
-cat  rancher-images-all.txt
-
-echo "#### 查看 rancher-images-all.txt -- 结束"
 
 # # cnrancher 镜像
 # for CNRANCHER in $( echo "${CNRANCHER_VERSION}" );

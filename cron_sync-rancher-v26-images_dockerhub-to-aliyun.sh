@@ -46,23 +46,6 @@ make
 
 cd ..
 
-echo "###### 查看 scripts/ci -- 开始"
-
-cat rancher/scripts/ci
-
-echo "###### 查看 scripts/ci -- 结束"
-
-
-
-echo "###### 查看 镜像文件 -- 开始 #####"
-cat rancher/bin/rancher-images.txt
-
-echo "--------"
-
-cat rancher-images-v${RANCHER_VERSION}.txt
-
-echo "###### 查看 镜像文件 -- 结束 #####"
-
 ## 镜像去重
 for i in `cat rancher/bin/rancher-images.txt`;
 do
@@ -74,9 +57,6 @@ do
 done
 
 # rancher 镜像
-echo "###### heavy-image.txt begin ######"
-cat heavy-image.txt
-echo "###### heavy-image.txt end   ######"
 cat heavy-image.txt >> rancher-images-all.txt
 rm -f heavy-image.txt
 
