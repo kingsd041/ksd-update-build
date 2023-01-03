@@ -27,11 +27,11 @@ git remote add upstream ${REMOTE_REPO_URL}/${REPO}.git
 echo "查看 remote"
 git remote -v
 
-echo "fetch upstream master"
-git fetch upstream master
+echo "fetch upstream main"
+git fetch upstream main
 
-echo "merge upstream/master"
-git merge upstream/master --no-edit
+echo "merge upstream/main"
+git merge upstream/main --no-edit
 
 echo "提交更新"
 git push https://${GITHUB_ACC}:${GITHUB_PW}@github.com/${ORG}/${REPO}.git -f
