@@ -6,6 +6,16 @@
 ### ksd test
 df -h
 
+# 清理 action 镜像磁盘空间
+# https://github.com/actions/runner-images/issues/2840
+sudo rm -rf /usr/share/dotnet
+sudo rm -rf /opt/ghc
+sudo rm -rf "/usr/local/share/boost"
+sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+### ksd test
+df -h
+
 sudo apt-get install jq make -y
 touch rancher-version-list.txt
 touch rancher-images-done.txt
