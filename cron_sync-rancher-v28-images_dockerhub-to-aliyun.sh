@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
-cat /etc/resolv.conf
+# sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
+# cat /etc/resolv.conf
 
 sudo apt-get install jq make -y
 touch rancher-version-list.txt
