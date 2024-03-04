@@ -1,7 +1,14 @@
 #!/bin/bash
 
-sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
-cat /etc/resolv.conf
+# sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
+# cat /etc/resolv.conf
+
+# 清理 action 镜像磁盘空间
+# https://github.com/actions/runner-images/issues/2840
+sudo rm -rf /usr/share/dotnet
+sudo rm -rf /opt/ghc
+sudo rm -rf "/usr/local/share/boost"
+sudo rm -rf "$AGENT_TOOLSDIRECTORY"
 
 sudo apt-get install jq make -y
 touch rancher-version-list.txt
