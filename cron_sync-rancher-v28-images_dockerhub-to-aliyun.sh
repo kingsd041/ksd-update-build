@@ -3,6 +3,9 @@
 # sudo bash -c "echo 'nameserver 223.5.5.5' > /etc/resolv.conf"
 # cat /etc/resolv.conf
 
+### ksd test
+df -h
+
 sudo apt-get install jq make -y
 touch rancher-version-list.txt
 touch rancher-images-done.txt
@@ -35,6 +38,9 @@ curl -LSs https://github.com/rancher/rancher/releases/download/v${RANCHER_VERSIO
 #echo "$RANCHER_VERSION" | grep ^2.8 | head -n 3 >> rancher-version-list.txt
 #echo "$RANCHER_VERSION" | grep ^2.9 | head -n 3 >> rancher-version-list.txt
 
+### ksd test
+df -h
+
 # make rancher
 git clone https://github.com/rancher/rancher
 cd rancher 
@@ -43,6 +49,9 @@ for k in validate test chart; do
     sed -i "/$k/d" scripts/ci
 done
 make
+
+### ksd test
+df -h
 
 cd ..
 
