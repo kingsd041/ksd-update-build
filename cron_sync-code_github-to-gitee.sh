@@ -14,7 +14,7 @@ ROOT_DIR="${PWD}/git-code-sync/"
 mkdir -p ${ROOT_DIR}
 cd ${ROOT_DIR}
 
-export REPO_LIST="rancher rke system-charts helm3-charts charts rancher-catalog community-catalog install-docker k3s kontainer-driver-metadata fleet partner-charts harvester"
+export REPO_LIST="rancher rke rke2 system-charts helm3-charts charts rancher-catalog community-catalog install-docker k3s kontainer-driver-metadata fleet partner-charts harvester"
 
 export GITHUB_REPO_URL=github.com/rancher
 export GITEE_REPO_URL=gitee.com/rancher
