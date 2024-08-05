@@ -14,7 +14,7 @@ ROOT_DIR="${PWD}/git-code-sync/"
 mkdir -p ${ROOT_DIR}
 cd ${ROOT_DIR}
 
-export REPO_LIST="rancher rke system-charts helm3-charts charts rancher-catalog community-catalog install-docker rio k3s k3os submariner kontainer-driver-metadata fleet os partner-charts harvester"
+export REPO_LIST="rancher rke system-charts helm3-charts charts rancher-catalog community-catalog install-docker k3s kontainer-driver-metadata fleet partner-charts harvester"
 
 export GITHUB_REPO_URL=github.com/rancher
 export GITEE_REPO_URL=gitee.com/rancher
@@ -88,12 +88,12 @@ sync_repo_github_gitee_rancher()
                     git checkout ${branch}
                     git fetch
                     git pull
-                    if [[  ${REPO} == "rancher" && ${branch} == "master" ]]; then
-                        cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
-                        mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
-                        git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
-                        git commit -am "Add README.zh-CN.md and issue template"
-                    fi
+                    # if [[  ${REPO} == "rancher" && ${branch} == "master" ]]; then
+                    #     cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
+                    #     mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
+                    #     git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
+                    #     git commit -am "Add README.zh-CN.md and issue template"
+                    # fi
                     git push -f https://${GITEE_ACC}:${GITEE_PW}@${GITEE_REPO_URL}/${REPO}.git ${branch}
                 done
                 echo '推送所有 tag 到 gitee'
@@ -123,12 +123,12 @@ sync_repo_github_gitee_rancher()
                 git pull
 
                 # 如果repo是rancher并且branch是master，替换readme和issue模板
-                if [[  ${REPO} == "rancher" && ${branch} == "master" ]]; then
-                    cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
-                    mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
-                    git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
-                    git commit -am "Add README.zh-CN.md and issue template"
-                fi
+                # if [[  ${REPO} == "rancher" && ${branch} == "master" ]]; then
+                #     cp ${script_base_dir}/${cn_file_dir}/README.zh-CN.md .
+                #     mkdir -p .gitee && cp ${script_base_dir}/${cn_file_dir}/ISSUE_TEMPLATE.zh-CN.md .gitee/
+                #     git add README.zh-CN.md .gitee/ISSUE_TEMPLATE.zh-CN.md
+                #     git commit -am "Add README.zh-CN.md and issue template"
+                # fi
                 git push -f https://${GITEE_ACC}:${GITEE_PW}@${GITEE_REPO_URL}/${REPO}.git ${branch}
             done
             echo '推送所有 tag 到 gitee'
