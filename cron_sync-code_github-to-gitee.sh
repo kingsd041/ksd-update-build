@@ -14,7 +14,7 @@ ROOT_DIR="${PWD}/git-code-sync/"
 mkdir -p ${ROOT_DIR}
 cd ${ROOT_DIR}
 
-export REPO_LIST="rancher rke rke2 system-charts helm3-charts charts rancher-catalog community-catalog install-docker k3s kontainer-driver-metadata fleet partner-charts harvester"
+export REPO_LIST="rancher rke rke2 system-charts helm3-charts charts rancher-catalog community-catalog install-docker k3s kontainer-driver-metadata fleet partner-charts harvester ui-plugin-charts rke2-charts virtual-clusters-ui"
 
 export GITHUB_REPO_URL=github.com/rancher
 export GITEE_REPO_URL=gitee.com/rancher
@@ -45,7 +45,7 @@ sync_repo_github_gitee_rancher()
                 echo '获取所有分支更新'
                 git pull origin
                 echo 'clone出所有远端分支'
-                git branch -r --list "origin/*" | grep -v HEAD | grep -v master | grep -v githubaction-go-get | grep -v githubaction-replace-envvar | grep -v githubaction-update-readme | grep -v patch | grep -v debug | grep -v revert | grep -v renovate | xargs -I @ git checkout -t @
+                git branch -r --list "origin/*" | grep -v HEAD | grep -v master | grep -v githubaction | grep -v githubaction-update-readme | grep -v patch | grep -v debug | grep -v revert | grep -v renovate | xargs -I @ git checkout -t @
                 echo '获取分支'
                 BRANCH_LIST=$( git branch -a | grep -v -E 'remotes|gitee|HEAD' | sed 's/*//' | sed -e 's/^[ ]*//g' | sed -e 's/[ ]*$//g' )
 
@@ -79,7 +79,7 @@ sync_repo_github_gitee_rancher()
                 echo '获取所有分支更新'
                 git pull origin
                 echo 'clone 出所有远端分支'
-                git branch -r --list "origin/*" | grep -v HEAD | grep -v master | grep -v githubaction-go-get | grep -v githubaction-replace-envvar | grep -v githubaction-update-readme | grep -v patch | grep -v debug | grep -v revert | grep -v renovate | xargs -I @ git checkout -t @
+                git branch -r --list "origin/*" | grep -v HEAD | grep -v master | grep -v githubaction | grep -v githubaction-update-readme | grep -v patch | grep -v debug | grep -v revert | grep -v renovate | xargs -I @ git checkout -t @
                 echo '获取分支'
                 BRANCH_LIST=$( git branch -a | grep -v -E 'remotes|gitee|HEAD' | sed 's/*//' | sed -e 's/^[ ]*//g' | sed -e 's/[ ]*$//g' )
 
@@ -112,7 +112,7 @@ sync_repo_github_gitee_rancher()
             #echo '获取所有分支更新'
             #git pull origin
             echo 'clone出所有远端分支'
-            git branch -r --list "origin/*" | grep -v HEAD | grep -v master | grep -v githubaction-go-get | grep -v githubaction-replace-envvar | grep -v githubaction-update-readme | grep -v patch | grep -v debug | grep -v revert | grep -v renovate | xargs -I @ git checkout -t @
+            git branch -r --list "origin/*" | grep -v HEAD | grep -v master | grep -v githubaction | grep -v githubaction-update-readme | grep -v patch | grep -v debug | grep -v revert | grep -v renovate | xargs -I @ git checkout -t @
             echo '获取分支'
             BRANCH_LIST=$( git branch -a | grep -v -E 'remotes|gitee|HEAD' | sed 's/*//' | sed -e 's/^[ ]*//g' | sed -e 's/[ ]*$//g' )
 
